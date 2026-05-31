@@ -9,337 +9,655 @@
   <meta property="og:title" content="SuperMemory-VQA">
   <meta property="og:description"
     content="An egocentric VQA benchmark for practical, long-horizon memory with AR glasses.">
-  <meta property="og:image" content="static/images/social_preview.png">
   <meta property="og:type" content="website">
   <title>SuperMemory-VQA</title>
-  <link rel="icon" type="image/png" href="static/images/logos/osu2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="static/css/supermemory.css">
 </head>
 
-<body>
+<body id="top">
   <header class="site-header">
-    <nav class="topbar" aria-label="Project navigation">
+    <nav class="nav" aria-label="Project navigation">
       <a class="brand" href="#top" aria-label="SuperMemory-VQA home">
-        <img src="static/images/logos/osu2.png" alt="The Ohio State University logo">
+        SuperMemory-VQA
       </a>
-      <div class="nav-links">
+      <div class="navlinks">
+        <a href="#introduction">Introduction</a>
         <a href="#dataset">Dataset</a>
         <a href="#pipeline">Pipeline</a>
-        <a href="#results">Results</a>
+        <a href="#setup">Setup</a>
+        <a href="#leaderboard">Results</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#survey">Survey</a>
         <a href="#citation">Citation</a>
       </div>
-      <img class="meta-logo" src="static/images/logos/meta.png" alt="Meta logo">
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero reveal">
-      <div class="hero-rule"></div>
-      <p class="eyebrow">Egocentric VQA for long-horizon AR memory</p>
-      <h1>SuperMemory-VQA</h1>
-      <p class="subtitle">An egocentric visual question-answering benchmark for practical, long-horizon memory.</p>
-      <p class="authors">
-        Samiul Alam, Shakhrul Iman Siam, Michael J. Proulx, James Fort, Richard Newcombe, Hyo Jin Kim, Mi Zhang
-      </p>
-      <p class="affiliations">The Ohio State University &nbsp;|&nbsp; Meta</p>
-      <div class="cta-row" aria-label="Project links">
-        <a class="button primary" href="static/pdfs/supermemory-vqa.pdf">Paper PDF</a>
-        <a class="button" href="https://huggingface.co/datasets/OSU-AIoT-MLSys-Lab/SuperMemory-VQA">Dataset</a>
-        <a class="button" href="https://github.com/AIoT-MLSys-Lab/supermemory-vqa">Code</a>
+  <div class="hero-wrap">
+    <section class="hero">
+      <div class="mark">SuperMemory-VQA</div>
+      <h1 class="title">An Egocentric Visual Question-Answering Benchmark for Long-Horizon Memory</h1>
+
+      <div class="authors-wrapper">
+        <p class="authors">
+          Samiul Alam<sup>1</sup>,
+          Shakhrul Iman Siam<sup>1</sup>,
+          Michael J. Proulx<sup>2</sup>,
+          James Fort<sup>2</sup>,
+          Richard Newcombe<sup>2</sup>,
+          Hyo Jin Kim<sup>2</sup>,
+          Mi Zhang<sup>1</sup>
+        </p>
+        <p class="affiliations">
+          <sup>1</sup> The Ohio State University &nbsp;&nbsp; <sup>2</sup> Meta
+        </p>
+        <div class="team-label">SuperMemory-VQA Team</div>
+        <div class="correspondence">
+          Correspondence: Samiul Alam <code>alam.140@osu.edu</code>, Mi Zhang <code>mizhang.1@osu.edu</code>
+        </div>
+        <div class="affil-logos">
+          <img class="affil-logo osu" src="static/images/logos/osu.png" alt="The Ohio State University">
+          <img class="affil-logo meta" src="static/images/logos/meta.svg" alt="Meta">
+        </div>
       </div>
-      <figure class="hero-figure">
-        <img src="static/images/supermemory/opener.svg" alt="Overview of the SuperMemory-VQA dataset">
+
+      <div class="publication-links">
+        <a class="button primary" href="static/pdfs/supermemory-vqa.pdf">
+          <span class="icon">&#128196;</span> Paper
+        </a>
+        <a class="button secondary" href="https://github.com/AIoT-MLSys-Lab/supermemory-vqa">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+            </svg>
+          </span> Code
+        </a>
+        <a class="button secondary" href="https://huggingface.co/datasets/OSU-AIoT-MLSys-Lab/SuperMemory-VQA">
+          <span class="icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 256 238"><path fill="#ff9d00" d="M243.95 188.509a15.94 15.94 0 0 0 2.149-12.856c-.826-3.135-2.531-5.743-4.846-7.616a15.9 15.9 0 0 0 2.15-5.994c.667-4.616-.864-9.227-4.312-12.99c-2.684-2.924-6.48-4.534-10.682-4.534q-.731 0-1.491.076a105 105 0 0 0 4.788-31.449c0-58.012-47.037-105.049-105.05-105.049S21.609 55.121 21.609 113.146a105 105 0 0 0 4.764 31.374h-.111c-4.202 0-7.997 1.61-10.68 4.535c-3.446 3.755-4.98 8.368-4.314 12.99a15.9 15.9 0 0 0 2.15 5.993c-2.314 1.874-4.02 4.482-4.844 7.618a15.92 15.92 0 0 0 2.15 12.857a14 14 0 0 0-.617 1.067c-2.076 3.942-2.21 8.396-.377 12.543c2.778 6.286 9.683 11.239 23.096 16.557c8.337 3.307 15.973 5.42 16.035 5.44c11.028 2.86 21.007 4.314 29.634 4.314c14.183 0 24.761-3.878 31.51-11.542a106.3 106.3 0 0 0 34.495-.195c6.746 7.791 17.39 11.737 31.685 11.737c8.634 0 18.608-1.453 29.634-4.313c.067-.02 7.7-2.134 16.035-5.441c13.413-5.315 20.311-10.269 23.096-16.557c1.833-4.148 1.7-8.602-.377-12.543q-.287-.554-.619-1.067zm-138.722 16.383a42 42 0 0 1-1.868 2.977c-1.747 2.557-4.044 4.51-6.709 5.963c-5.098 2.778-11.548 3.75-18.098 3.75c-10.352 0-20.97-2.423-26.912-3.966c-.292-.076-36.458-10.293-31.884-18.994c.77-1.462 2.04-2.046 3.636-2.046c6.448 0 18.185 9.601 23.232 9.601c1.126 0 1.922-.48 2.246-1.65c2.15-7.714-32.679-10.955-29.745-22.127c.518-1.976 1.921-2.778 3.896-2.778c8.524-.001 27.658 14.991 31.66 14.991c.308 0 .528-.09.647-.278l.052-.086c1.877-3.101.8-5.356-12.067-13.238l-1.236-.752c-14.158-8.571-24.102-13.723-18.446-19.876c.65-.711 1.57-1.026 2.69-1.026c1.33 0 2.937.445 4.707 1.19c7.478 3.153 17.837 11.754 22.176 15.5a168 168 0 0 1 2.028 1.79s5.482 5.7 8.797 5.7c.763 0 1.41-.299 1.849-1.043c2.351-3.963-21.828-22.288-23.195-29.846c-.924-5.123.648-7.718 3.558-7.718c1.383 0 3.07.588 4.934 1.77c5.78 3.67 16.943 22.847 21.032 30.306c1.37 2.5 3.708 3.557 5.815 3.557c4.18 0 7.448-4.155.383-9.436c-10.62-7.946-6.893-20.932-1.825-21.728q.325-.05.653-.052c4.609 0 6.642 7.943 6.642 7.943s5.958 14.966 16.197 25.196c9.29 9.284 10.586 16.905 5.175 26.402zm33.102 1.753l-.53.063l-.907.104q-.714.074-1.43.14l-.468.043l-.425.036l-.605.049q-.334.025-.668.047l-.666.045l-.147.008l-.524.031l-.223.012l-.621.03l-.723.03l-.656.023l-.438.012h-.22c-.138 0-.273.008-.41.01h-.217q-.204-.002-.41.007l-.555.006h-.778q-.915 0-1.826-.018l-.492-.01c-.14 0-.28-.008-.42-.012l-.52-.016l-.649-.025l-.583-.025l-.151-.006l-.556-.03q-.231-.012-.461-.026l-.36-.021a99 99 0 0 1-1.353-.096l-.473-.037l-.596-.051l-.698-.065q-.584-.054-1.167-.12h-.018c5.68-12.678 2.808-24.512-8.672-35.973c-7.528-7.517-12.542-18.62-13.574-21.057c-2.103-7.215-7.67-15.24-16.917-15.24q-1.174.003-2.334.186c-4.05.636-7.59 2.968-10.117 6.476c-2.728-3.394-5.382-6.093-7.781-7.618c-3.617-2.292-7.226-3.456-10.744-3.456c-4.388 0-8.312 1.802-11.047 5.072l-.068.083l-.154-.648l-.006-.027a92 92 0 0 1-1.31-6.727c0-.017 0-.031-.008-.046l-.077-.511l-.122-.83q-.049-.346-.094-.688q-.046-.344-.09-.689a70 70 0 0 1-.16-1.347l-.007-.056a97 97 0 0 1-.289-3.032l-.043-.585q-.02-.24-.034-.485c0-.037-.005-.076-.007-.11l-.041-.65q-.022-.352-.039-.704l-.035-.705l-.025-.615l-.007-.187l-.019-.57l-.013-.481c0-.193-.01-.387-.013-.58l-.01-.608c-.002-.202 0-.404-.005-.606c-.006-.204 0-.407 0-.61c0-52.022 42.176-94.198 94.21-94.198s94.21 42.176 94.21 94.197v1.217q-.001.306-.01.608c0 .17-.007.335-.012.504q-.001.226-.012.445c0 .19-.011.379-.017.569v.016l-.051 1.238l-.008.137l-.032.616l-.03.489a98 98 0 0 1-.271 3.47v.015q-.03.326-.066.65l-.166 1.51l-.064.507l-.078.594q-.042.326-.088.65l-.105.725l-.087.57l-.102.645q-.051.323-.11.644c-.043.214-.075.428-.112.643q-.111.641-.235 1.28q-.248 1.274-.521 2.541q-.069.315-.142.632c-2.651-2.577-6.161-3.98-10.035-3.98c-3.514 0-7.126 1.162-10.742 3.455c-2.4 1.524-5.052 4.224-7.783 7.619c-2.53-3.51-6.07-5.84-10.116-6.478a15 15 0 0 0-2.334-.184c-9.247 0-14.817 8.021-16.918 15.24c-1.043 2.437-6.052 13.536-13.586 21.07c-11.47 11.433-14.37 23.22-8.773 35.836zm97.255-25.37l-.037.11q-.038.106-.08.211a6.5 6.5 0 0 1-.55 1.026q-.311.465-.683.884c-.057.064-.112.128-.176.191q-.132.143-.272.282c-1.675 1.66-4.226 3.113-7.11 4.448q-.489.222-.993.444l-.333.147a66 66 0 0 1-1.362.58l-.694.287c-1.622.667-3.284 1.303-4.906 1.932l-.692.268l-.686.268q-.682.267-1.35.534l-.66.266l-.647.266l-.32.133q-.316.133-.626.266c-4.77 2.046-8.201 4.128-7.48 6.712q.03.11.067.21q.097.288.262.542q.098.154.223.285c.847.88 2.39.74 4.335.042q.238-.085.483-.183q.166-.064.334-.131l.168-.071c.445-.19.916-.4 1.398-.63c.12-.055.243-.11.364-.174c2.378-1.163 5.074-2.73 7.75-4.156q.616-.331 1.23-.646a57 57 0 0 1 2.025-1c2.533-1.192 4.914-2.037 6.83-2.037c.897 0 1.691.184 2.351.607l.11.073a3.6 3.6 0 0 1 1.023 1.101q.08.129.15.264c.946 1.795.154 3.656-1.698 5.48c-1.779 1.75-4.546 3.466-7.692 5.056q-.349.178-.704.35c-9.36 4.597-21.616 8.059-21.79 8.102c-3.267.847-7.938 1.96-13.201 2.791l-.78.12l-.126.02q-1.79.267-3.59.473l-.11.011a84 84 0 0 1-6.66.505h-.034q-1.208.044-2.416.043h-.927a59 59 0 0 1-3.68-.166q-.042.002-.088-.007a47 47 0 0 1-3.56-.42l-.9-.151q-.206-.037-.409-.077l-.032-.007a35 35 0 0 1-1.288-.27c-.247-.057-.496-.113-.74-.178l-.147-.039q-.182-.046-.36-.094l-.067-.018l-.384-.11l-.416-.122l-.05-.015l-.362-.11l-.407-.131q-.167-.058-.335-.112l-.245-.086q-.354-.124-.703-.259l-.221-.085l-.183-.074q-.528-.212-1.05-.445l-.23-.11l-.039-.018q-.123-.058-.245-.112a21 21 0 0 1-.477-.237l-.047-.024l-.23-.12a19 19 0 0 1-1.195-.679l-.214-.13c-.11-.068-.211-.136-.317-.204l-.278-.185a10 10 0 0 1-.3-.207l-.179-.127a17 17 0 0 1-.557-.416q-.145-.114-.288-.223q-.318-.255-.625-.525l-.009-.008q-.3-.26-.585-.534l-.01-.013q-.15-.14-.294-.287t-.286-.293q-.142-.149-.28-.304q-.134-.145-.264-.294l-.03-.034a19 19 0 0 1-1.258-1.634l-.154-.228q-.153-.226-.302-.453l-.293-.452a38 38 0 0 1-.712-1.145q-.122-.204-.24-.406q-.064-.11-.125-.222c-.04-.078-.09-.156-.133-.234l-.07-.123l-.043-.081a13 13 0 0 1-.246-.451q-.053-.1-.11-.2l-.113-.213l-.11-.212l-.214-.432l-.102-.212q-.109-.23-.212-.454q-.043-.092-.081-.183a14 14 0 0 1-.273-.63c-.058-.14-.111-.28-.169-.419q-.24-.615-.448-1.243q-.063-.185-.118-.372q-.134-.423-.243-.854a16 16 0 0 1-.232-1.011q-.064-.3-.11-.605q-.051-.3-.087-.599a16 16 0 0 1-.108-1.193c0-.066-.006-.133-.007-.199q-.01-.197-.011-.395c-.07-5.31 2.619-10.418 8.365-16.16c10.235-10.226 16.197-25.196 16.197-25.196s.16-.628.495-1.53q.167-.45.351-.893q.21-.5.453-.985l.047-.095q.311-.619.678-1.206c.056-.09.11-.181.175-.27q.272-.407.577-.789q.235-.293.498-.563c.594-.611 1.272-1.111 2.039-1.378l.097-.031q.096-.031.194-.06q.116-.03.23-.055l.036-.006a4 4 0 0 1 .49-.066h.015c.086 0 .172-.009.26-.009q.33.003.657.053c.922.145 1.8.695 2.557 1.542l.101.12q.37.433.67.92q.222.36.422.756c.053.112.104.214.155.324q.038.083.074.167q.074.166.141.34c.26.666.461 1.354.603 2.055q.226 1.137.262 2.297q.015.509 0 1.03q-.008.198-.022.398a14.9 14.9 0 0 1-.956 4.316c-.053.137-.112.276-.166.415a15 15 0 0 1-.929 1.855q-.3.51-.648 1.014l-.141.201a17 17 0 0 1-1.829 2.148q-.99.99-2.112 1.829a17 17 0 0 0-2.1 1.834c-1.869 1.962-2.304 3.691-1.884 5.002q.075.223.176.434c.155.305.356.584.598.828l.065.066q.103.1.214.19l.075.061a4.3 4.3 0 0 0 .573.372c.057.03.11.062.176.092q.413.204.858.33l.082.02l.11.03l.098.024l.103.022l.103.021l.098.016q.111.02.221.035l.073.01l.128.014l.08.007l.13.01h.077l.136.006h.432l.123-.006l.142-.009l.172-.016l.162-.02c.036 0 .073-.01.11-.016a6.3 6.3 0 0 0 1.973-.631a6.5 6.5 0 0 0 1.44-.993l.176-.167q.043-.04.082-.082a6 6 0 0 0 .484-.543a7.5 7.5 0 0 0 .707-1.068a283 283 0 0 1 7.646-13.064l.365-.586l.37-.586q.278-.445.555-.88l.188-.291l.374-.583q.753-1.165 1.513-2.306l.379-.567a134 134 0 0 1 2.271-3.265l.375-.515a68 68 0 0 1 2.552-3.308l.352-.42c.057-.07.11-.14.174-.208l.345-.399c.057-.065.111-.13.171-.193l.333-.377l.168-.182q.243-.262.492-.52c.112-.11.215-.222.323-.325a13 13 0 0 1 2.075-1.724l.173-.11l.175-.112q.168-.105.34-.2c2.94-1.667 5.373-1.79 6.773-.39c.849.848 1.317 2.254 1.293 4.21q.002.128-.008.262v.097q-.002.133-.014.27c0 .11-.013.222-.024.332c-.012.112-.017.197-.028.295q-.002.043-.01.086l-.03.262c0 .027 0 .053-.012.08q-.019.179-.051.354a5 5 0 0 1-.052.324l-.031.186a5 5 0 0 1-.126.523q-.143.481-.35.94q-.09.202-.188.397q-.202.404-.453.832q-.124.212-.26.431l-.14.222q-.212.333-.444.674q-.23.342-.497.695q-.345.471-.728.956l-.194.245a67 67 0 0 1-1.684 2.014l-.457.516l-.232.26q-.475.532-.956 1.056l-.246.266c-.163.177-.333.356-.496.533q-.251.27-.505.539l-.512.539l-.518.54q-.26.273-.522.544l-1.056 1.088c-5.04 5.17-10.352 10.322-12.149 13.536q-.18.315-.326.645c-.255.585-.361 1.084-.29 1.488q.037.201.14.377q.153.264.367.481q.097.098.208.18c.37.264.817.4 1.27.386h.143l.145-.01l.147-.018l.12-.017q.024-.002.049-.009l.11-.021l.03-.007l.122-.027l.174-.044l.155-.046q.152-.047.309-.105q.337-.12.66-.274q.082-.038.164-.08l.165-.082q.323-.164.648-.356q.258-.151.516-.316l.166-.111q.083-.052.165-.112l.166-.11l.087-.062l.238-.166c.223-.154.43-.312.642-.472l.019-.014l.333-.259c.456-.36.89-.723 1.281-1.065l.261-.23l.025-.022l.136-.12c.32-.288.606-.556.845-.779l.097-.094l.235-.223l.14-.137l.049-.05l.013-.013l.239-.24l.01-.01l.045-.04q.02-.022.053-.048l.018-.016l.047-.043l.252-.222l.142-.128q.106-.09.222-.202l.17-.149q.045-.038.091-.08l.178-.156l.262-.229l.138-.12c.541-.471 1.2-1.04 1.954-1.68l.31-.26l.512-.43l.522-.437c.684-.567 1.42-1.17 2.198-1.796l.51-.41q.655-.52 1.336-1.056q.272-.215.555-.427a143 143 0 0 1 4.677-3.466l.478-.332q.5-.347 1-.686l.303-.205q.896-.605 1.809-1.182l.302-.19l.3-.187q.45-.279.894-.547l.297-.176l.596-.347q.292-.17.583-.333l.117-.066l.462-.252q.288-.157.574-.304l.286-.146l.276-.14q.948-.477 1.928-.88q.135-.055.266-.112q.263-.11.522-.2q.26-.088.511-.179q.228-.075.445-.143l.048-.015q.117-.035.232-.065l.022-.007q.235-.066.471-.123h.013q.348-.084.68-.14q.113-.02.222-.035q.323-.048.648-.07q.205-.014.411-.013h.105q.207 0 .406.022c.06 0 .122.011.181.02h.025q.09.01.18.029c.058.012.117.02.175.034h.02c.057.013.11.029.17.045c.475.128.91.37 1.273.703l.032.032l.063.062l.063.066a6.9 6.9 0 0 1 1.221 1.779l.049.11q.16.374.247.77c.162.734.118 1.5-.127 2.211q-.157.465-.387.899l-.102.184a10.3 10.3 0 0 1-1.366 1.805l-.112.118q-.368.39-.762.754q-.126.118-.256.235l-.132.12q-.411.363-.837.71q-.075.059-.149.121q-.295.24-.613.482a53 53 0 0 1-2.226 1.613q-.667.455-1.38.923q-1.327.87-2.676 1.706q-.388.241-.787.484c-2.445 1.505-5.156 3.113-8.047 4.862l-.748.455q-1.23.75-2.32 1.43l-.367.232l-.693.445q-.412.26-.802.514q-.294.189-.576.373l-.37.244q-.27.176-.538.357l-.174.11q-.276.184-.537.363l-.285.194l-.334.233l-.309.215q-.73.512-1.445 1.046l-.167.127q-.281.214-.544.422l-.229.182q-.578.465-1.05.89l-.154.142q-.134.121-.258.241l-.17.165l-.08.08q-.268.267-.52.548l-.081.095a8 8 0 0 0-.482.611l-.063.09a5.3 5.3 0 0 0-.426.746l-.042.09l-.026.064l-.022.054l-.028.076c-.009.026-.026.072-.036.112a3 3 0 0 0-.113.456l-.013.084l-.01.075l-.006.074v.39q-.002.049.008.1q0 .03.006.06c0 .031.009.064.012.097l.024.137v.006q.012.066.028.13q.017.068.037.139q.06.211.144.415c0 .01.008.021.012.031l.045.102q.091.213.204.415l.078.14l.082.142l.086.142l.05.066l.028.03l.03.027l.034.026q.034.024.07.044q.038.017.08.033q.045.015.09.026c.717.162 2.19-.432 4.149-1.466l.352-.187l.595-.324l.292-.162c.206-.112.419-.236.634-.36l.394-.222c2.59-1.49 5.683-3.406 8.88-5.275q.45-.263.9-.523l.604-.386q.453-.26.905-.514a99 99 0 0 1 3.905-2.106l.59-.3q.59-.29 1.166-.566a52 52 0 0 1 2.256-1.005l.417-.169l.05-.02c2.206-.874 4.206-1.414 5.824-1.414q.526-.004 1.046.085h.01c.111.02.212.043.314.069h.019q.224.054.437.139q.17.062.328.147a3.1 3.1 0 0 1 1.227 1.12q.165.25.281.527q.069.157.128.333c.04.12.075.234.11.357a4.86 4.86 0 0 1-.074 2.866z\"/><path fill="#ffd21e" d="M220.83 113.728v-.61c0-52.02-42.163-94.197-94.197-94.197c-52.02 0-94.21 42.177-94.21 94.198l-.002.204v.405q.01.303.008.608l.007.447l.002.162l.007.221q.005.179.006.357l.012.483l.02.568l.006.187l.025.588v.027l.035.687v.018q.019.353.04.703q.019.326.04.65l.005.04q.016.276.037.556l.004.048q.019.27.04.537l.003.035l.025.311q.111 1.344.261 2.686l.006.056l.075.656l.086.692a85 85 0 0 0 .304 2.206l.006.034q.14.937.301 1.87q.464 2.706 1.09 5.38l.005.029l.04.168l.114.478l.069-.083c2.734-3.27 6.657-5.072 11.047-5.072c3.517 0 7.127 1.163 10.743 3.456c2.4 1.524 5.052 4.224 7.782 7.618c2.525-3.509 6.066-5.84 10.115-6.476a15 15 0 0 1 2.335-.185c9.244 0 14.817 8.023 16.918 15.24c1.037 2.438 6.047 13.536 13.598 21.057c11.48 11.47 14.357 23.307 8.672 35.973h.018q.582.064 1.168.118q.349.035.697.065l.082.007q.256.024.513.044l.473.038q.674.052 1.355.096l.358.021l.284.016l.178.01l.554.03l.152.006l.584.025l.648.025l.522.015l.087.004q.165.006.332.008l.118.003q1.1.026 2.199.026h.778l.557-.006q.204-.01.409-.008h.216l.188-.003q.11-.005.221-.005h.223l.436-.013l.656-.022l.724-.031l.621-.03l.223-.013l.33-.018l.194-.011l.146-.01l.667-.044q.334-.02.668-.048l.604-.048l.426-.036l.466-.042q.719-.067 1.431-.142q.454-.05.906-.103l.531-.063c-5.592-12.617-2.697-24.4 8.736-35.824c7.535-7.53 12.542-18.633 13.587-21.07c2.104-7.216 7.667-15.24 16.917-15.24q1.175.002 2.335.186c4.046.636 7.587 2.968 10.117 6.476c2.73-3.395 5.382-6.095 7.781-7.619c3.616-2.293 7.228-3.455 10.742-3.455c3.874 0 7.385 1.404 10.037 3.98q.218-.973.42-1.95q.123-.609.242-1.222q.147-.754.274-1.512q.033-.205.072-.411q.06-.321.11-.644l.014-.082l.088-.563l.087-.57l.002-.007l.103-.718q.038-.272.074-.546l.015-.105l.077-.594l.064-.506q.058-.5.112-1q.024-.2.043-.402l.013-.108q.034-.333.064-.666l.05-.517q.154-1.718.251-3.441v-.008l.034-.609l.006-.136l.025-.578q.014-.327.026-.66v-.017l.006-.16a9 9 0 0 0 .011-.409l.003-.056q.009-.191.01-.389l.003-.112q.007-.195.008-.39l.002-.11q.007-.25.008-.5z"/><path fill="#32343d" d="M157.311 87.475c1.468.52 2.56 2.102 3.6 3.606c1.405 2.035 2.712 3.927 4.719 2.86a13.545 13.545 0 0 0 7.128-13.266a13.55 13.55 0 0 0-5.935-9.956a13.56 13.56 0 0 0-18.015 2.634a13.57 13.57 0 0 0-3.028 7.262a13.56 13.56 0 0 0 1.517 7.721c.93 1.75 2.994.925 5.171.054c1.708-.683 3.486-1.394 4.843-.915m-63.867.001c-1.468.52-2.562 2.102-3.6 3.606c-1.406 2.034-2.713 3.927-4.72 2.86a13.55 13.55 0 0 1-6.92-9.295a13.56 13.56 0 0 1 2.789-11.248a13.557 13.557 0 0 1 23.986 7.216a13.55 13.55 0 0 1-1.52 7.721c-.932 1.75-2.995.924-5.173.053c-1.707-.683-3.484-1.394-4.842-.914zm53.985 58.112c10.122-7.975 13.835-20.995 13.835-29.012c0-6.34-4.266-4.345-11.094-.965l-.384.191c-6.269 3.104-14.618 7.236-23.767 7.236c-9.16 0-17.502-4.133-23.767-7.237c-7.049-3.492-11.47-5.682-11.47.776c0 8.272 3.955 21.852 14.817 29.746a23.55 23.55 0 0 1 14.386-12.165c1.084-.323 2.2 1.543 3.344 3.452c1.103 1.844 2.229 3.728 3.376 3.728c1.22 0 2.422-1.857 3.594-3.67c1.224-1.895 2.418-3.742 3.572-3.373a23.57 23.57 0 0 1 13.562 11.29z"/><path fill="#ff323d" d="M147.367 145.624c-5.272 4.154-12.279 6.94-21.405 6.94c-8.573 0-15.277-2.459-20.423-6.202a23.58 23.58 0 0 1 14.387-12.164c2.13-.635 4.384 7.18 6.718 7.18c2.5 0 4.908-7.765 7.168-7.043a23.6 23.6 0 0 1 13.561 11.29z"/><path fill="#ffad03" d="M69.217 98.762a8.8 8.8 0 0 1-6.623 1.335a8.81 8.81 0 0 1-6.939-6.931a8.82 8.82 0 0 1 1.328-6.626a8.812 8.812 0 0 1 15.96 6.615a8.8 8.8 0 0 1-3.726 5.607m126.044 0a8.8 8.8 0 0 1-6.623 1.335a8.81 8.81 0 0 1-6.939-6.931a8.812 8.812 0 1 1 13.562 5.596"/></svg>
+          </span> Dataset
+        </a>
+        <a class="button secondary" href="#leaderboard">
+          <span class="icon">&#127942;</span> Results
+        </a>
+      </div>
+
+      <figure class="figure-card reveal" style="margin-top:24px;">
+        <div class="figure-media">
+          <img class="paper-fig" src="static/images/supermemory/opener.svg"
+            alt="Overview of the SuperMemory-VQA dataset">
+        </div>
       </figure>
-      <p class="irb-note">Dataset collection and experiments were conducted by OSU researchers following an IRB-reviewed
-        protocol.</p>
     </section>
+  </div>
 
-    <section class="section narrow reveal">
-      <h2>Abstract</h2>
-      <p>
-        Augmented reality glasses present a compelling platform for AI agents to serve as personalized memory
-        assistants. SuperMemory-VQA evaluates whether such systems can answer realistic memory questions from long,
-        multimodal egocentric recordings rather than short isolated clips.
-      </p>
-      <p>
-        The dataset contains <strong>52.9 hours</strong> of everyday activities recorded with AR glasses, including
-        synchronized RGB video, audio transcription, eye gaze, IMU, and SLAM trajectories. A human-verified annotation
-        pipeline yields <strong>4,853</strong> grounded question-answer pairs spanning object and location memory,
-        intent recall, visual scene recall, timeline reconstruction, conversational memory, and in-context retrieval.
-      </p>
-    </section>
-
-    <section class="stats reveal" aria-label="Dataset summary statistics">
-      <article class="stat-card">
+  <section id="abstract" class="narrow reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Abstract</p>
+    </div>
+    <p class="has-text-justified">
+      Augmented reality glasses present a compelling platform for AI agents to serve as personalized memory
+      assistants. SuperMemory-VQA evaluates whether such systems can answer realistic memory questions from long,
+      multimodal egocentric recordings rather than short isolated clips.
+    </p>
+    <p class="has-text-justified">
+      The dataset contains <b>52.9 hours</b> of everyday activities recorded with AR glasses, including synchronized
+      RGB video, audio transcription, eye gaze, IMU, and SLAM trajectories. A human-verified annotation pipeline yields
+      <b>4,853</b> grounded question-answer pairs spanning object and location memory, intent recall, visual scene
+      recall, timeline reconstruction, conversational memory, and in-context retrieval.
+    </p>
+    <div class="stat-grid">
+      <div class="card stat-card">
         <span class="stat-value" data-count="52.9" data-decimals="1">0</span>
         <span class="stat-label">hours of egocentric data</span>
-      </article>
-      <article class="stat-card">
+      </div>
+      <div class="card stat-card">
         <span class="stat-value" data-count="10">0</span>
         <span class="stat-label">participants</span>
-      </article>
-      <article class="stat-card">
+      </div>
+      <div class="card stat-card">
         <span class="stat-value" data-count="4853">0</span>
         <span class="stat-label">question-answer pairs</span>
-      </article>
-      <article class="stat-card">
+      </div>
+      <div class="card stat-card">
         <span class="stat-value" data-count="6">0</span>
         <span class="stat-label">memory task categories</span>
-      </article>
-    </section>
-
-    <section id="dataset" class="section reveal">
-      <div class="section-heading">
-        <p class="eyebrow">Dataset</p>
-        <h2>Memory questions grounded in everyday life</h2>
       </div>
-      <div class="two-column">
-        <div>
-          <p>
-            SuperMemory-VQA targets questions people might actually ask an AR memory assistant: where an object was
-            left, what someone said in conversation, whether an intended action happened, or how events unfolded across
-            time.
-          </p>
-          <p>
-            The benchmark stresses natural phrasing, long-horizon context, dense multi-evidence retrieval, multimodal
-            grounding, and hallucination robustness through ordered multiple-choice answers that include an explicit
-            unanswerable option.
-          </p>
+    </div>
+  </section>
+
+  <section id="introduction" class="narrow reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Introduction</p>
+    </div>
+    <p class="has-text-justified">
+      The integration of AI agents into AI glasses represents a transformative leap in personal computing. By
+      continuously observing a user's daily life, these agents have the potential to act as personalized memory systems
+      &mdash; helping users locate misplaced items, revisit conversations, and piece together past events. Delivering
+      genuine utility, however, requires moving beyond short-term visual understanding to systems that process
+      continuous, multimodal sensor streams over extended periods and answer natural questions rooted in real human
+      memory gaps.
+    </p>
+    <p class="has-text-justified">
+      Progress is currently hindered on two fronts. On the modeling side, even models with million-token context
+      windows degrade over long inputs and suffer from the &ldquo;lost in the middle&rdquo; effect, and
+      retrieval-augmented generation often fails at compositional, multi-hop reasoning over vast temporal gaps. On the
+      evaluation side, existing egocentric datasets predominantly target action recognition or generic QA from short
+      clips, measuring perceptual capability rather than realistic memory needs. The closest prior work, EgoLife,
+      introduced week-long egocentric data but does not systematically evaluate whether systems can answer natural,
+      user-centered memory questions across multi-session recordings.
+    </p>
+    <p class="has-text-justified">
+      SuperMemory-VQA fills this gap. It is built around questions people would realistically ask an AI memory
+      assistant, grounded in recordings that capture synchronized RGB video, spatial audio, eye gaze, IMU, and SLAM
+      trajectories. Benchmarking state-of-the-art agentic frameworks and leading vision-language models reveals that
+      current systems remain far from reliable: they struggle with answerability detection, long temporal gaps, and
+      integrating evidence across multiple moments.
+    </p>
+  </section>
+
+  <section id="dataset" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Dataset</p>
+    </div>
+    <p class="section-intro">
+      SuperMemory-VQA contains 52.9 hours of egocentric recordings of everyday activities, collected from ten
+      participants wearing Gen 1 Meta Aria glasses. The recordings are multimodal: egocentric RGB video
+      (1408&times;1408, 30fps), dual SLAM streams (640&times;480, 30fps), eye-tracking (320&times;240, 60fps), and
+      7-channel audio (48kHz). Participants recorded indoors and outdoors following generic scripts &mdash; cooking a
+      recipe, playing board games, doing chores, and having conversations. Each participant contributed 3&ndash;12 hours
+      across multiple sessions, with three participants recording across multiple days (up to two weeks).
+    </p>
+    <p>
+      Alongside the recordings, SuperMemory-VQA provides 4,853 question-answer pairs that reflect what a user would
+      actually want to remember for practical, personal, or social purposes. Each question is posed as a multiple-choice
+      item with ordered answer choices &mdash; accurate, vague, incorrect, and an explicit unanswerable option &mdash; so
+      that safe abstention can be distinguished from confident hallucination.
+    </p>
+
+    <h3 style="margin-top:28px;">What sets SuperMemory-VQA apart</h3>
+    <div class="grid">
+      <div class="col-4">
+        <div class="card">
+          <h3>Natural phrasing</h3>
+          <p>Conversational, context-dependent queries rather than templates, forcing models to infer user intent and
+            temporal reference.</p>
         </div>
-        <figure class="framed-figure">
-          <img src="static/images/supermemory/teaser.svg"
-            alt="Comparison between SuperMemory-VQA and prior egocentric QA benchmarks">
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>Long-horizon context</h3>
+          <p>Questions grounded in recordings lasting hours and sometimes spanning days, exceeding the practical context
+            limits of current VLMs.</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>Dense multi-evidence retrieval</h3>
+          <p>Many questions link sparse evidence across disjoint moments &mdash; e.g. a spoken plan and a later action
+            &mdash; demanding retrieval and temporal abstraction.</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>Grounded multimodal reasoning</h3>
+          <p>Aligns video, audio, gaze, motion, and spatial context to track actions, object states, and intent over
+            time.</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>Epistemic calibration</h3>
+          <p>Ordered answer choices (correct &gt; vague &gt; wrong &gt; unanswerable) test whether models avoid
+            confident hallucination when evidence is missing.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">The six memory task categories</h3>
+    <div class="task-grid">
+      <div class="card">
+        <h3>Object &amp; Location Memory</h3>
+        <p>Recover the last known location and trajectory of objects across time and rooms.</p>
+      </div>
+      <div class="card">
+        <h3>Conversational Memory</h3>
+        <p>Recall spoken facts, commitments, deferred answers, and mid-conversation corrections.</p>
+      </div>
+      <div class="card">
+        <h3>Visual Scene Recall</h3>
+        <p>Retrieve visual details such as text, screens, ingredients, manuals, and scene contents.</p>
+      </div>
+      <div class="card">
+        <h3>In-Context Retrieval</h3>
+        <p>Combine current context with earlier facts and associations in the recording history.</p>
+      </div>
+      <div class="card">
+        <h3>Timeline Reconstruction</h3>
+        <p>Sequence events chronologically and reason over how actions unfolded.</p>
+      </div>
+      <div class="card">
+        <h3>Intent Recall</h3>
+        <p>Recover stated or implied goals, reminders, and intended future actions.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;">Comparison to existing egocentric benchmarks</h3>
+    <p class="section-intro">
+      Prior egocentric datasets emphasize action recognition, general video comprehension, or generic template-based
+      QA. SuperMemory-VQA instead targets longitudinal, multi-session memory with natural phrasing, multi-evidence
+      questions (34% require more than one supporting clip), and ordered multiple-choice answers with time spans.
+    </p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Focus</th>
+            <th class="num">Hrs</th>
+            <th>Context</th>
+            <th class="num">QAs</th>
+            <th>Multi-evidence</th>
+            <th>Natural</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EPIC-KITCHENS-100</td><td>Action rec.</td><td class="num">100</td><td>~8.5m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
+          </tr>
+          <tr>
+            <td>Ego4D</td><td>Ego activities</td><td class="num">3,670</td><td>~23m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
+          </tr>
+          <tr>
+            <td>EgoSchema</td><td>Long video QA</td><td class="num">&gt;250</td><td>3m</td><td class="num">5,063</td><td>Single</td><td>No</td>
+          </tr>
+          <tr>
+            <td>HoloAssist</td><td>Assistance</td><td class="num">166</td><td>~5&ndash;10m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
+          </tr>
+          <tr>
+            <td>AEA</td><td>Spatial</td><td class="num">&gt;7.5</td><td>~5m</td><td class="num">&mdash;</td><td>&mdash;</td><td>N/A</td>
+          </tr>
+          <tr>
+            <td>Nymeria</td><td>Motion</td><td class="num">300</td><td>~15m</td><td class="num">&mdash;</td><td>&mdash;</td><td>N/A</td>
+          </tr>
+          <tr>
+            <td>EgoLife</td><td>Life assistant</td><td class="num">300</td><td>&gt;1h</td><td class="num">6,000</td><td>Limited</td><td>No</td>
+          </tr>
+          <tr class="ours">
+            <td>SuperMemory-VQA (Ours)</td><td>SuperMemory</td><td class="num">52.9</td><td>&gt;1h</td><td class="num">4,853</td><td>34%</td><td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:12px;">
+      <b>Multi-evidence</b> means a question requires more than one supporting timestamp or clip. The closest prior
+      work, EgoLife, spans a week but still lacks realistic, practical queries for human memory assistance.
+    </p>
+  </section>
+
+  <section id="pipeline" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Annotation Pipeline</p>
+    </div>
+    <p class="section-intro">
+      To scale generation while preserving fidelity, SuperMemory-VQA is built with an automated, agentic pipeline of
+      specialized LLM agents structured into two phases, each followed by human review.
+    </p>
+
+    <div class="grid">
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/pipeline_phase1.svg"
+              alt="Phase 1 of the SuperMemory-VQA annotation pipeline">
+          </div>
+          <figcaption>Phase 1: dense video captioning and evidence discovery.</figcaption>
         </figure>
       </div>
-      <div class="task-grid">
-        <article>
-          <h3>Object &amp; Location Memory</h3>
-          <p>Recover the last known location and trajectory of objects across time and rooms.</p>
-        </article>
-        <article>
-          <h3>Conversational Memory</h3>
-          <p>Recall spoken facts, commitments, deferred answers, and mid-conversation corrections.</p>
-        </article>
-        <article>
-          <h3>Visual Scene Recall</h3>
-          <p>Retrieve visual details such as text, screens, ingredients, manuals, and scene contents.</p>
-        </article>
-        <article>
-          <h3>In-Context Retrieval</h3>
-          <p>Combine current context with earlier facts and associations in the recording history.</p>
-        </article>
-        <article>
-          <h3>Timeline Reconstruction</h3>
-          <p>Sequence events chronologically and reason over how actions unfolded.</p>
-        </article>
-        <article>
-          <h3>Intent Recall</h3>
-          <p>Recover stated or implied goals, reminders, and intended future actions.</p>
-        </article>
-      </div>
-      <figure class="wide-figure">
-        <img src="static/images/supermemory/tasks.svg"
-          alt="Example question-answer pairs from the six SuperMemory-VQA task categories">
-      </figure>
-    </section>
-
-    <section id="pipeline" class="section reveal">
-      <div class="section-heading">
-        <p class="eyebrow">Annotation Pipeline</p>
-        <h2>Scalable generation with human verification</h2>
-      </div>
-      <p class="section-intro">
-        An agentic system drafts grounded descriptions and question-answer pairs from continuous egocentric video.
-        Automated checks and human review refine the final benchmark, preserving evidence spans and answerability
-        labels.
-      </p>
-      <div class="pipeline-grid">
-        <figure class="framed-figure">
-          <img src="static/images/supermemory/pipeline_phase1.svg"
-            alt="Phase 1 of the SuperMemory-VQA annotation pipeline">
-          <figcaption>Phase 1: evidence discovery and candidate QA generation.</figcaption>
-        </figure>
-        <figure class="framed-figure">
-          <img src="static/images/supermemory/pipeline_phase2.svg"
-            alt="Phase 2 of the SuperMemory-VQA annotation pipeline">
-          <figcaption>Phase 2: validation, refinement, and human verification.</figcaption>
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/pipeline_phase2.svg"
+              alt="Phase 2 of the SuperMemory-VQA annotation pipeline">
+          </div>
+          <figcaption>Phase 2: agentic QA generation, verification, and refinement.</figcaption>
         </figure>
       </div>
-    </section>
+    </div>
 
-    <section class="section reveal">
-      <div class="section-heading">
-        <p class="eyebrow">Statistics</p>
-        <h2>Long horizons and multi-evidence reasoning</h2>
+    <div class="grid" style="margin-top:18px;">
+      <div class="col-6">
+        <div class="card">
+          <h3>Phase 1 &middot; Dense Video Captioning</h3>
+          <p>Session videos are split into short chunks to fit context limits. Audio across all of a participant's
+            sessions is transcribed with WhisperX, and an LLM captioning agent processes each chunk with the
+            transcription, a Person Registry of pseudonymized individuals, and previously accumulated captions. It
+            extracts dense descriptions of visual actions, detected objects, auditory events, and conversation
+            summaries, which are temporally aggregated into consolidated session captions and checked by human review.</p>
+        </div>
       </div>
-      <div class="figure-grid">
-        <figure class="framed-figure"><img src="static/images/supermemory/stat_temporal_gap.svg"
-            alt="Temporal gap distribution"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/stat_evidence_count.svg"
-            alt="Evidence count by task"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/stat_evidence_duration.svg"
-            alt="Evidence duration distribution"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/stat_evidence_duration_task.svg"
-            alt="Evidence duration by task"></figure>
+      <div class="col-6">
+        <div class="card">
+          <h3>Phase 2 &middot; Agentic QA Generation</h3>
+          <p>A Build Super Ledger step aggregates metadata and captions from all sessions into a unified ledger. A
+            <b>QA Planner</b> proposes diverse, task-targeted question-answer pairs using a rationale-first,
+            chain-of-thought schema. A closed loop of <b>Verifier</b>, <b>Retriever</b>, and <b>Enhancer</b> agents then
+            grounds, scores, and iteratively refines each pair before a final human review yields the benchmark.</p>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="results" class="section reveal">
-      <div class="section-heading">
-        <p class="eyebrow">Benchmarking Results</p>
-        <h2>Current systems remain far from reliable</h2>
+    <h3 style="margin-top:28px;">Closed-loop verification criteria</h3>
+    <div class="card" style="margin-top:12px;">
+      <ol class="crit-list">
+        <li><span class="crit-num">1</span><span><b>Factual correctness.</b> The answer is grounded in the recorded
+            data, confirmed by the Retriever against the Super Ledger.</span></li>
+        <li><span class="crit-num">2</span><span><b>Objective alignment.</b> The pair fits a target memory task and the
+            temporal gap is large enough to justify a plausible memory lapse.</span></li>
+        <li><span class="crit-num">3</span><span><b>Causality.</b> The question is answerable using only data recorded
+            before the question time.</span></li>
+        <li><span class="crit-num">4</span><span><b>Answer-choice balance.</b> The answer cannot be inferred from the
+            question and choices alone, without the evidence.</span></li>
+        <li><span class="crit-num">5</span><span><b>QA naturalness.</b> The question is practical and naturally worded,
+            like something a user would actually ask.</span></li>
+      </ol>
+    </div>
+    <p class="note" style="margin-top:12px;">
+      The QA Planner and Verifier use <b>Gemini-3.1-Pro</b>; the captioning, retrieval, and enhancer agents use
+      <b>Gemini-3-Flash</b>. Pairs the Verifier cannot validate are routed to a rejected set; approved pairs pass a
+      final human review.
+    </p>
+  </section>
+
+  <section id="setup" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Experimental Setup</p>
+    </div>
+    <p class="section-intro">
+      We evaluate two state-of-the-art frameworks for long-form video understanding, each illustrating a distinct
+      strategy for managing long-horizon context, paired with a diverse set of open- and closed-source VLMs. To enforce
+      causality, every system receives the question and four answer choices over only the video preceding the question
+      time.
+    </p>
+
+    <div class="grid">
+      <div class="col-6">
+        <div class="card">
+          <h3>Video-RAG</h3>
+          <p>A training-free, single-turn retrieval-augmented framework that augments a VLM with auxiliary text from the
+            source video. Three databases are precomputed per session &mdash; ASR transcripts (WhisperX), OCR text
+            (EasyOCR), and object detections on CLIP-selected keyframes (APE). At inference the VLM decomposes the query,
+            each database is queried via FAISS over Contriever embeddings, and retrieved text is concatenated with 32
+            sampled frames.</p>
+        </div>
       </div>
-      <p class="section-intro">
-        Even the strongest configuration, Gemini-3-Flash with Video-RAG, reaches only 61.0% QA accuracy. The gap between
-        answerability detection and correct answer selection shows that retrieval, multimodal grounding, and evidence
-        sufficiency remain open challenges.
-      </p>
-      <div class="results-panel">
-        <table>
+      <div class="col-6">
+        <div class="card">
+          <h3>EgoButler</h3>
+          <p>Proposed alongside EgoLife and the closest in spirit to SuperMemory-VQA, EgoButler pairs EgoGPT (an
+            omni-modal captioner) with EgoRAG, which recursively summarizes dense visual&ndash;audio captions into
+            hour- and day-level digests to form a hierarchical memory bank. At query time it performs coarse-to-fine
+            temporal localization, retrieving summaries first, then narrowing to clips.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px;">Vision-language models</h3>
+    <p class="section-intro">Each framework is evaluated with the same backbones:</p>
+    <div class="pill-row">
+      <span class="badge">Qwen-3-VL 8B</span>
+      <span class="badge">Qwen-3-VL 30B</span>
+      <span class="badge">InternVL-3.5 8B</span>
+      <span class="badge">InternVL-3.5 30B</span>
+      <span class="badge">Gemma-4-E4B IT</span>
+      <span class="badge">Gemma-4 31B</span>
+      <span class="badge">Gemini-3-Flash</span>
+      <span class="badge">Gemini-3.1-Pro</span>
+      <span class="badge">GPT-5.4-mini</span>
+      <span class="badge">GPT-5.4</span>
+    </div>
+
+    <h3 style="margin-top:28px;">Evaluation metrics</h3>
+    <div class="grid">
+      <div class="col-4">
+        <div class="card">
+          <h3>Ans-F1</h3>
+          <p>F1 of the binary decision of whether a question is answerable from the available evidence, or should
+            receive the unanswerable option.</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>QA-Acc</h3>
+          <p>Four-way multiple-choice accuracy: only the ground-truth correct option earns credit; vague, wrong, and
+            incorrect abstention count as wrong.</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>QA-MRR</h3>
+          <p>Mean reciprocal rank from the model's ordered scores, rewarding ranking the correct answer above vague,
+            wrong, and unsupported alternatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leaderboard" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Benchmarking Results</p>
+    </div>
+    <p class="section-intro">
+      Even the strongest configuration, Gemini-3-Flash with Video-RAG, reaches only 61.0% QA accuracy despite 83.9%
+      Ans-F1 and 76.0% QA-MRR. That gap shows that detecting answerability is only the first hurdle: models must also
+      retrieve the precise multimodal evidence, interpret it, distinguish the correct answer from plausible distractors,
+      and abstain only when evidence is insufficient. Averaged across models, Video-RAG outperforms EgoButler, lifting
+      Ans-F1 from 51.5% to 70.5%, QA-Acc from 41.4% to 46.6%, and QA-MRR from 62.8% to 66.4%.
+    </p>
+
+    <div class="leaderboard-container">
+      <div class="leaderboard-header">
+        <h3>&#127942; Model Rankings</h3>
+        <p>Answerability, accuracy, and ranking across two retrieval pipelines</p>
+      </div>
+
+      <div class="score-notes">
+        How to read the scores: all metrics are reported on a 0&ndash;100 scale (higher is better). Rankings are by
+        <b>Video-RAG accuracy</b> by default &mdash; click any column header to re-sort.
+      </div>
+
+      <div class="controls">
+        <div class="filter-group">
+          <span class="filter-label">Models:</span>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="open">Open-source</button>
+          <button class="filter-btn" data-filter="closed">Closed-source</button>
+        </div>
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search models...">
+        </div>
+      </div>
+
+      <div class="metrics-legend">
+        <span class="legend-title">Metric Key</span>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="legend-badge">Ans-F1</span> Answerability F1 &mdash; detecting whether
+            a question is answerable.</div>
+          <div class="legend-item"><span class="legend-badge">Acc.</span> Accuracy &mdash; correct answer selection.</div>
+          <div class="legend-item"><span class="legend-badge">MRR</span> Mean Reciprocal Rank of the correct answer.</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="leaderboard-table">
           <thead>
             <tr>
-              <th rowspan="2">Model</th>
-              <th colspan="3">Video-RAG</th>
-              <th colspan="3">EgoButler</th>
-            </tr>
-            <tr>
-              <th>Ans-F1</th>
-              <th>Acc.</th>
-              <th>MRR</th>
-              <th>Ans-F1</th>
-              <th>Acc.</th>
-              <th>MRR</th>
+              <th class="sortable" data-sort="model">Model</th>
+              <th class="sortable metric-group" data-sort="vr_ans">VR Ans-F1</th>
+              <th class="sortable" data-sort="vr_acc">VR Acc.</th>
+              <th class="sortable" data-sort="vr_mrr">VR MRR</th>
+              <th class="sortable metric-group" data-sort="eb_ans">EB Ans-F1</th>
+              <th class="sortable" data-sort="eb_acc">EB Acc.</th>
+              <th class="sortable" data-sort="eb_mrr">EB MRR</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="group">
-              <td colspan="7">Open-source models</td>
-            </tr>
-            <tr>
-              <td>Qwen-3-VL 8B</td>
-              <td>75.0</td>
-              <td>41.8</td>
-              <td>63.8</td>
-              <td>44.5</td>
-              <td>38.8</td>
-              <td>61.0</td>
-            </tr>
-            <tr>
-              <td>Qwen-3-VL 30B</td>
-              <td>56.6</td>
-              <td>45.5</td>
-              <td>65.7</td>
-              <td>44.2</td>
-              <td>39.1</td>
-              <td>61.8</td>
-            </tr>
-            <tr>
-              <td>InternVL-3.5 8B</td>
-              <td>81.7</td>
-              <td>41.0</td>
-              <td>63.3</td>
-              <td>61.4</td>
-              <td>39.8</td>
-              <td>61.8</td>
-            </tr>
-            <tr>
-              <td>InternVL-3.5 30B</td>
-              <td>77.7</td>
-              <td>42.3</td>
-              <td>63.7</td>
-              <td>28.5</td>
-              <td>27.3</td>
-              <td>53.4</td>
-            </tr>
-            <tr>
-              <td>Gemma-4-E4B IT</td>
-              <td>40.3</td>
-              <td>35.3</td>
-              <td>58.2</td>
-              <td>30.9</td>
-              <td>36.4</td>
-              <td>58.2</td>
-            </tr>
-            <tr>
-              <td>Gemma-4 31B</td>
-              <td>67.2</td>
-              <td>45.6</td>
-              <td>65.5</td>
-              <td>43.9</td>
-              <td>41.5</td>
-              <td>62.2</td>
-            </tr>
-            <tr class="group closed">
-              <td colspan="7">Closed-source models</td>
-            </tr>
-            <tr>
-              <td>Gemini-3-Flash</td>
-              <td class="best">83.9</td>
-              <td class="best">61.0</td>
-              <td class="best">76.0</td>
-              <td>71.2</td>
-              <td class="best">54.1</td>
-              <td class="best">71.6</td>
-            </tr>
-            <tr>
-              <td>Gemini-3.1-Pro</td>
-              <td>67.4</td>
-              <td>53.2</td>
-              <td>70.7</td>
-              <td>43.5</td>
-              <td>42.6</td>
-              <td>64.2</td>
-            </tr>
-            <tr>
-              <td>GPT-5.4-mini</td>
-              <td>77.6</td>
-              <td>47.8</td>
-              <td>67.4</td>
-              <td class="best">75.0</td>
-              <td>46.0</td>
-              <td>66.1</td>
-            </tr>
-            <tr>
-              <td>GPT-5.4</td>
-              <td>78.3</td>
-              <td>52.3</td>
-              <td>69.5</td>
-              <td>71.7</td>
-              <td>48.0</td>
-              <td>67.2</td>
-            </tr>
-          </tbody>
+          <tbody id="tableBody"></tbody>
         </table>
       </div>
-      <div class="figure-grid results-figures">
-        <figure class="framed-figure"><img src="static/images/supermemory/radar_videorag.svg"
-            alt="Video-RAG radar results"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/radar_egobutler.svg"
-            alt="EgoButler radar results"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/result_temporal_robustness.svg"
-            alt="Temporal robustness analysis"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/result_complexity_scaling.svg"
-            alt="Complexity scaling analysis"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/result_reliability.svg"
-            alt="Reliability analysis"></figure>
-        <figure class="framed-figure"><img src="static/images/supermemory/survey_likert.svg"
-            alt="Participant survey results"></figure>
-      </div>
-    </section>
+    </div>
 
-    <section id="citation" class="section narrow reveal">
-      <h2>Citation</h2>
-      <pre class="bibtex"><code>@article{alam2026supermemoryvqa,
+    <div class="note" style="margin-top:14px;">
+      <b>VR</b> = Video-RAG pipeline, <b>EB</b> = EgoButler pipeline. Best value in each column is highlighted.
+    </div>
+  </section>
+
+  <section id="analysis" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Analysis</p>
+    </div>
+    <p class="section-intro">
+      Video-RAG yields more balanced task coverage than EgoButler, especially for tasks that link evidence across time.
+      Reliability failures are dominated by excessive abstention &mdash; even Gemini-3-Flash answers correctly on only
+      42.9% of answerable questions and wrongly abstains on 39.9%.
+    </p>
+
+    <h3 style="margin-bottom:10px;">Key findings</h3>
+    <div class="card" style="margin-bottom:24px;">
+      <ol class="crit-list">
+        <li><span class="crit-num">1</span><span><b>Structured retrieval helps most.</b> Video-RAG beats EgoButler on
+            most metrics, with its largest gain in Ans-F1 (51.5% &rarr; 70.5%) &mdash; retrieval-augmented evidence is
+            especially useful for deciding whether a question is grounded in the recorded memory.</span></li>
+        <li><span class="crit-num">2</span><span><b>Closed-source is stronger, but size is not destiny.</b> Closed
+            models average 76.8% Ans-F1 / 53.6% QA-Acc under Video-RAG vs. 66.4% / 41.9% for open models, yet
+            performance is not monotonic with scale &mdash; Gemini-3-Flash beats Gemini-3.1-Pro on every Video-RAG
+            metric.</span></li>
+        <li><span class="crit-num">3</span><span><b>Larger models can collapse on the wrong format.</b> InternVL-3.5
+            30B drops to 28.5% Ans-F1 under EgoButler (vs. 61.4% for the 8B), failing to exploit its caption-based
+            memory format.</span></li>
+        <li><span class="crit-num">4</span><span><b>Excessive abstention dominates failures.</b> The main error on
+            answerable questions is abstaining when evidence is present; several open models wrongly abstain on more
+            than 70% of answerable cases.</span></li>
+        <li><span class="crit-num">5</span><span><b>The Ans-F1 / accuracy gap is the open challenge.</b> Detecting
+            answerability is only the first hurdle; coupling long-horizon retrieval with grounded reasoning to actually
+            select the correct answer remains unsolved.</span></li>
+      </ol>
+    </div>
+
+    <h3 style="margin-bottom:6px;">Task-category breakdowns</h3>
+    <div class="grid">
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/radar_videorag.svg" alt="Video-RAG radar results">
+          </div>
+          <figcaption>Video-RAG: task-category breakdown across model families.</figcaption>
+        </figure>
+      </div>
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/radar_egobutler.svg" alt="EgoButler radar results">
+          </div>
+          <figcaption>EgoButler: task-category breakdown across model families.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <h3 style="margin:28px 0 6px;">Agentic frameworks compared</h3>
+    <div class="grid">
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/videoagent_compare.svg"
+              alt="EgoButler, Video-RAG, and VideoAgent compared across the six task categories">
+          </div>
+          <figcaption>EgoButler, Video-RAG, and VideoAgent (Gemini-3-Flash) across the six task categories. VideoAgent
+            underperforms both baselines despite far higher token and compute cost.</figcaption>
+        </figure>
+      </div>
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/result_reliability.svg" alt="Reliability analysis">
+          </div>
+          <figcaption>Response reliability on answerable questions &mdash; failures are dominated by excessive
+            abstention rather than wrong answers.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <h3 style="margin:28px 0 6px;">Long-horizon difficulty</h3>
+    <div class="grid">
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/result_temporal_robustness.svg"
+              alt="Temporal robustness analysis">
+          </div>
+          <figcaption>Temporal robustness: performance vs. the time gap between the query and its supporting evidence.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/result_complexity_scaling.svg"
+              alt="Complexity scaling analysis">
+          </div>
+          <figcaption>Complexity scaling: performance as questions require more pieces of supporting evidence.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="survey" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Participant Survey</p>
+    </div>
+    <div class="grid">
+      <div class="col-6">
+        <p>
+          Eight participants reviewed 18 questions generated from their own recordings and rated seven statements about
+          question quality and utility. Responses were strongly positive, with no disagreement across statements.
+        </p>
+        <div class="note">
+          <b>86%</b> agreed the questions captured genuine memory lapses, <b>82%</b> found the answers useful during
+          daily routines, and <b>78%</b> agreed the underlying knowledge would also help answer future questions.
+        </div>
+      </div>
+      <div class="col-6">
+        <figure class="figure-card">
+          <div class="figure-media">
+            <img class="paper-fig" src="static/images/supermemory/survey_likert.svg" alt="Participant survey results">
+          </div>
+          <figcaption>Survey responses for QA quality (Likert).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="citation" class="narrow reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Citation</p>
+    </div>
+    <pre class="codeblock"><code>@article{alam2026supermemoryvqa,
   title   = {SuperMemory-VQA: An Egocentric Visual Question-Answering Benchmark for Long-Horizon Memory},
   author  = {Alam, Samiul and Siam, Shakhrul Iman and Proulx, Michael J. and Fort, James and Newcombe, Richard and Kim, Hyo Jin and Zhang, Mi},
   year    = {2026},
   journal = {arXiv preprint}
 }</code></pre>
-    </section>
-  </main>
+  </section>
 
   <footer class="footer">
-    <p>Built as a static research project page and styled to match the SuperMemory-VQA manuscript.</p>
+    <div class="footer-inner">
+      <span>SuperMemory-VQA &middot; The Ohio State University &amp; Meta</span>
+      <span>&copy; 2026 SuperMemory-VQA. Hosted on GitHub Pages.</span>
+    </div>
   </footer>
 
   <script src="static/js/supermemory.js"></script>
