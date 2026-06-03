@@ -181,7 +181,6 @@
       Based on the recrodings, we construct <b>4,853</b> grounded QA pairs through a humanverified annotation pipeline that cover six commonly encountered memory tasks: <b>Object and Location Memory</b>, <b>Intent Recall</b>, <b>Visual Scene Recall</b>, <b>Timeline Reconstruction</b>, <b>Conversational Memory</b>, and <b>In-Context Retrieval</b>. 
       Each question is posed as a multiple-choice item with ordered answer choices &mdash; accurate, vague, incorrect, and an explicit unanswerable option &mdash; so that safe abstention can be distinguished from confident hallucination.
     </p>
-    <br>
     <div class="task-grid">
       <div class="card">
         <h3>Object &amp; Location Memory</h3>
@@ -208,81 +207,6 @@
         <p>Recover stated or implied goals, reminders, and intended future actions.</p>
       </div>
     </div>
-
-    
-  <section id="pipeline" class="reveal">
-    <div class="section-heading">
-      <p class="eyebrow">Annotation Pipeline</p>
-    </div>
-    <p class="section-intro">
-      To scale generation while preserving fidelity, SuperMemory-VQA is built with an automated, agentic pipeline of
-      specialized LLM agents structured into two phases, each followed by human review.
-    </p>
-
-    <div class="grid">
-      <div class="col-6">
-        <figure class="figure-card">
-          <div class="figure-media">
-            <img class="paper-fig" src="static/images/supermemory/pipeline_phase1.svg"
-              alt="Phase 1 of the SuperMemory-VQA annotation pipeline">
-          </div>
-          <figcaption>Phase 1: dense video captioning and evidence discovery.</figcaption>
-        </figure>
-      </div>
-      <div class="col-6">
-        <figure class="figure-card">
-          <div class="figure-media">
-            <img class="paper-fig" src="static/images/supermemory/pipeline_phase2.svg"
-              alt="Phase 2 of the SuperMemory-VQA annotation pipeline">
-          </div>
-          <figcaption>Phase 2: agentic QA generation, verification, and refinement.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="grid" style="margin-top:18px;">
-      <div class="col-6">
-        <div class="card">
-          <h3>Phase 1 &middot; Dense Video Captioning</h3>
-          <p>Session videos are split into short chunks to fit context limits. Audio across all of a participant's
-            sessions is transcribed with WhisperX, and an LLM captioning agent processes each chunk with the
-            transcription, a Person Registry of pseudonymized individuals, and previously accumulated captions. It
-            extracts dense descriptions of visual actions, detected objects, auditory events, and conversation
-            summaries, which are temporally aggregated into consolidated session captions and checked by human review.</p>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="card">
-          <h3>Phase 2 &middot; Agentic QA Generation</h3>
-          <p>A Build Super Ledger step aggregates metadata and captions from all sessions into a unified ledger. A
-            <b>QA Planner</b> proposes diverse, task-targeted question-answer pairs using a rationale-first,
-            chain-of-thought schema. A closed loop of <b>Verifier</b>, <b>Retriever</b>, and <b>Enhancer</b> agents then
-            grounds, scores, and iteratively refines each pair before a final human review yields the benchmark.</p>
-        </div>
-      </div>
-    </div>
-
-    <h3 style="margin-top:28px;">Closed-loop verification criteria</h3>
-    <div class="card" style="margin-top:12px;">
-      <ol class="crit-list">
-        <li><span class="crit-num">1</span><span><b>Factual correctness.</b> The answer is grounded in the recorded
-            data, confirmed by the Retriever against the Super Ledger.</span></li>
-        <li><span class="crit-num">2</span><span><b>Objective alignment.</b> The pair fits a target memory task and the
-            temporal gap is large enough to justify a plausible memory lapse.</span></li>
-        <li><span class="crit-num">3</span><span><b>Causality.</b> The question is answerable using only data recorded
-            before the question time.</span></li>
-        <li><span class="crit-num">4</span><span><b>Answer-choice balance.</b> The answer cannot be inferred from the
-            question and choices alone, without the evidence.</span></li>
-        <li><span class="crit-num">5</span><span><b>QA naturalness.</b> The question is practical and naturally worded,
-            like something a user would actually ask.</span></li>
-      </ol>
-    </div>
-    <p class="note" style="margin-top:12px;">
-      The QA Planner and Verifier use <b>Gemini-3.1-Pro</b>; the captioning, retrieval, and enhancer agents use
-      <b>Gemini-3-Flash</b>. Pairs the Verifier cannot validate are routed to a rejected set; approved pairs pass a
-      final human review.
-    </p>
-  </section>
 
   <section id="setup" class="reveal">
     <div class="section-heading">
