@@ -176,7 +176,7 @@
       across multiple sessions, with three participants recording across multiple days (up to two weeks).
     </p>
     <p>
-      Based on the recrodings, we construct <b>4,853</b> grounded QA pairs through a humanverified annotation pipeline that cover six commonly encountered memory tasks: <b>Object and Location Memory</b>, <b>Intent Recall</b>, <b>Visual Scene Recall</b>, <b>Timeline Reconstruction</b>, <b>Conversational Memory</b>, and <b>in-context retrieval</b>. 
+      Based on the recrodings, we construct <b>4,853</b> grounded QA pairs through a humanverified annotation pipeline that cover six commonly encountered memory tasks: <b>Object and Location Memory</b>, <b>Intent Recall</b>, <b>Visual Scene Recall</b>, <b>Timeline Reconstruction</b>, <b>Conversational Memory</b>, and <b>In-Context Retrieval</b>. 
       Each question is posed as a multiple-choice item with ordered answer choices &mdash; accurate, vague, incorrect, and an explicit unanswerable option &mdash; so that safe abstention can be distinguished from confident hallucination.
     </p>
     <div class="task-grid">
@@ -206,59 +206,7 @@
       </div>
     </div>
 
-    <h3 style="margin-top:32px;">Comparison to existing egocentric benchmarks</h3>
-    <p class="section-intro">
-      Prior egocentric datasets emphasize action recognition, general video comprehension, or generic template-based
-      QA. SuperMemory-VQA instead targets longitudinal, multi-session memory with natural phrasing, multi-evidence
-      questions (34% require more than one supporting clip), and ordered multiple-choice answers with time spans.
-    </p>
-    <div class="table-wrap">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Dataset</th>
-            <th>Focus</th>
-            <th class="num">Hrs</th>
-            <th>Context</th>
-            <th class="num">QAs</th>
-            <th>Multi-evidence</th>
-            <th>Natural</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>EPIC-KITCHENS-100</td><td>Action rec.</td><td class="num">100</td><td>~8.5m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
-          </tr>
-          <tr>
-            <td>Ego4D</td><td>Ego activities</td><td class="num">3,670</td><td>~23m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
-          </tr>
-          <tr>
-            <td>EgoSchema</td><td>Long video QA</td><td class="num">&gt;250</td><td>3m</td><td class="num">5,063</td><td>Single</td><td>No</td>
-          </tr>
-          <tr>
-            <td>HoloAssist</td><td>Assistance</td><td class="num">166</td><td>~5&ndash;10m</td><td class="num">&mdash;</td><td>&mdash;</td><td>No</td>
-          </tr>
-          <tr>
-            <td>AEA</td><td>Spatial</td><td class="num">&gt;7.5</td><td>~5m</td><td class="num">&mdash;</td><td>&mdash;</td><td>N/A</td>
-          </tr>
-          <tr>
-            <td>Nymeria</td><td>Motion</td><td class="num">300</td><td>~15m</td><td class="num">&mdash;</td><td>&mdash;</td><td>N/A</td>
-          </tr>
-          <tr>
-            <td>EgoLife</td><td>Life assistant</td><td class="num">300</td><td>&gt;1h</td><td class="num">6,000</td><td>Limited</td><td>No</td>
-          </tr>
-          <tr class="ours">
-            <td>SuperMemory-VQA (Ours)</td><td>SuperMemory</td><td class="num">52.9</td><td>&gt;1h</td><td class="num">4,853</td><td>34%</td><td>Yes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note" style="margin-top:12px;">
-      <b>Multi-evidence</b> means a question requires more than one supporting timestamp or clip. The closest prior
-      work, EgoLife, spans a week but still lacks realistic, practical queries for human memory assistance.
-    </p>
-  </section>
-
+    
   <section id="pipeline" class="reveal">
     <div class="section-heading">
       <p class="eyebrow">Annotation Pipeline</p>
