@@ -27,8 +27,7 @@
       <div class="navlinks">
         <a href="#introduction">Introduction</a>
         <a href="#dataset">Dataset</a>
-        <a href="#setup">Setup</a>
-        <a href="#leaderboard">Results</a>
+        <a href="#leaderboard">Leaderboard</a>
         <a href="#analysis">Analysis</a>
         <a href="#survey">Survey</a>
         <a href="#citation">Citation</a>
@@ -207,15 +206,15 @@
       </div>
     </div>
 
-  <section id="setup" class="reveal">
+
+  <section id="leaderboard" class="reveal">
     <div class="section-heading">
-      <p class="eyebrow">Experimental Setup</p>
+      <p class="eyebrow">Leaderboard</p>
     </div>
+   
     <p class="section-intro">
       We evaluate two state-of-the-art frameworks for long-form video understanding, each illustrating a distinct
-      strategy for managing long-horizon context, paired with a diverse set of open- and closed-source VLMs. To enforce
-      causality, every system receives the question and four answer choices over only the video preceding the question
-      time.
+      strategy for managing long-horizon context, paired with a diverse set of open- and closed-source VLMs. 
     </p>
 
     <div class="grid">
@@ -279,20 +278,7 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <section id="leaderboard" class="reveal">
-    <div class="section-heading">
-      <p class="eyebrow">Benchmarking Results</p>
-    </div>
-    <p class="section-intro">
-      Even the strongest configuration, Gemini-3-Flash with Video-RAG, reaches only 61.0% QA accuracy despite 83.9%
-      Ans-F1 and 76.0% QA-MRR. That gap shows that detecting answerability is only the first hurdle: models must also
-      retrieve the precise multimodal evidence, interpret it, distinguish the correct answer from plausible distractors,
-      and abstain only when evidence is insufficient. Averaged across models, Video-RAG outperforms EgoButler, lifting
-      Ans-F1 from 51.5% to 70.5%, QA-Acc from 41.4% to 46.6%, and QA-MRR from 62.8% to 66.4%.
-    </p>
-
+    
     <div class="leaderboard-container">
       <div class="leaderboard-header">
         <h3>&#127942; Model Rankings</h3>
