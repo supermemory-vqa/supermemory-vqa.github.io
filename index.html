@@ -27,6 +27,7 @@
       <div class="navlinks">
         <a href="#introduction">Introduction</a>
         <a href="#dataset">Dataset</a>
+        <a href="#examples">Examples</a>
         <a href="#leaderboard">Leaderboard</a>
         <a href="#analysis">Findings</a>
         <a href="#survey">Survey</a>
@@ -104,37 +105,30 @@
         </div>
     </figure>
     <div class="grid">
-      <div class="col-4">
+      <div class="col-3">
         <div class="card">
-          <h3>Natural phrasing</h3>
-          <p>Conversational, context-dependent queries rather than templates, forcing models to infer user intent and
-            temporal reference.</p>
+          <h3>Comprehensive Memory Tasks</h3>
+          <p>Covers practical personal, social, spatial, conversational, and timeline-oriented memory needs that arise
+            in everyday egocentric recordings.</p>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="card">
-          <h3>Long-horizon context</h3>
+          <h3>Long-Horizon Context</h3>
           <p>Questions grounded in recordings lasting hours and sometimes spanning days, exceeding the practical context
             limits of current VLMs.</p>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="card">
-          <h3>Dense multi-evidence retrieval</h3>
+          <h3>Multi-Evidence Reasoning</h3>
           <p>Many questions link sparse evidence across disjoint moments &mdash; e.g. a spoken plan and a later action
             &mdash; demanding retrieval and temporal abstraction.</p>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="card">
-          <h3>Grounded multimodal reasoning</h3>
-          <p>Aligns video, audio, gaze, motion, and spatial context to track actions, object states, and intent over
-            time.</p>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card">
-          <h3>Epistemic calibration</h3>
+          <h3>Realistic Question Answers</h3>
           <p>Ordered answer choices (correct &gt; vague &gt; wrong &gt; unanswerable) test whether models avoid
             confident hallucination when evidence is missing.</p>
         </div>
@@ -205,7 +199,23 @@
         <p>Recover stated or implied goals, reminders, and intended future actions.</p>
       </div>
     </div>
+  </section>
 
+  <section id="examples" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Examples</p>
+    </div>
+    <p class="section-intro">
+      SuperMemory-VQA covers six commonly encountered memory tasks. These examples show QA pairs from all six tasks.
+    </p>
+    <figure class="figure-card example-figure">
+      <div class="figure-media">
+        <img class="paper-fig" src="static/images/supermemory/tasks.svg"
+          alt="Example SuperMemory-VQA questions across memory task categories">
+      </div>
+      <figcaption>Example VQA pairs from each of the six task categories.</figcaption>
+    </figure>
+  </section>
 
   <section id="leaderboard" class="reveal">
     <div class="section-heading">
