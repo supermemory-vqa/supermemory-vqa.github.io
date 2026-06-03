@@ -84,6 +84,7 @@
       </div>
     </section>
   </div>
+
   
   <section id="introduction" class="narrow reveal">
     <div class="section-heading">
@@ -96,61 +97,14 @@
     </p>
     <p class="has-text-justified">
       To fill this gap, we introduce <b>SuperMemory-VQA</b>, an egocentric visual question answering (VQA) dataset for evaluating AI assistants on <b>practical, long-horizon memory tasks</b>. 
-      As summarized in Figure 1, SuperMemory-VQA emphasizes four critical properties missing from prior benchmarks: comprehensive memory tasks, long-horizon context, multi-evidence reasoning, and realistic question answers.
+      As summarized in Figure 1, SuperMemory-VQA emphasizes four critical properties missing from prior benchmarks: <b>Comprehensive Memory Tasks</b>, <b>Long-Horizon Context</b>, <b>Multi-Evidence Reasoning</b>, and <b>Realistic Question Answers</b>.
     </p>
     <figure class="figure-card reveal" style="margin-top:24px;">
         <div class="figure-media">
           <img class="paper-fig" src="static/images/supermemory/opener.svg"
             alt="Overview of the SuperMemory-VQA dataset">
         </div>
-      </figure>
-  </section>
-  
-
-  <section id="dataset" class="reveal">
-    <div class="section-heading">
-      <p class="eyebrow">Dataset</p>
-    </div>
-    <p class="has-text-justified">
-      The dataset contains <b>52.9 hours</b> of everyday activities recorded with AR glasses, including synchronized
-      RGB video, audio transcription, eye gaze, IMU, and SLAM trajectories. A human-verified annotation pipeline yields
-      <b>4,853</b> grounded question-answer pairs spanning object and location memory, intent recall, visual scene
-      recall, timeline reconstruction, conversational memory, and in-context retrieval.
-    </p>
-    <div class="stat-grid">
-      <div class="card stat-card">
-        <span class="stat-value" data-count="52.9" data-decimals="1">0</span>
-        <span class="stat-label">hours of egocentric data</span>
-      </div>
-      <div class="card stat-card">
-        <span class="stat-value" data-count="10">0</span>
-        <span class="stat-label">participants</span>
-      </div>
-      <div class="card stat-card">
-        <span class="stat-value" data-count="4853">0</span>
-        <span class="stat-label">question-answer pairs</span>
-      </div>
-      <div class="card stat-card">
-        <span class="stat-value" data-count="6">0</span>
-        <span class="stat-label">memory task categories</span>
-      </div>
-    </div>
-    <p class="section-intro">
-      SuperMemory-VQA contains 52.9 hours of egocentric recordings of everyday activities, collected from ten
-      participants wearing Gen 1 Meta Aria glasses. The recordings are multimodal: egocentric RGB video
-      (1408&times;1408, 30fps), dual SLAM streams (640&times;480, 30fps), eye-tracking (320&times;240, 60fps), and
-      7-channel audio (48kHz). Participants recorded indoors and outdoors following generic scripts &mdash; cooking a
-      recipe, playing board games, doing chores, and having conversations. Each participant contributed 3&ndash;12 hours
-      across multiple sessions, with three participants recording across multiple days (up to two weeks).
-    </p>
-    <p>
-      Alongside the recordings, SuperMemory-VQA provides 4,853 question-answer pairs that reflect what a user would
-      actually want to remember for practical, personal, or social purposes. Each question is posed as a multiple-choice
-      item with ordered answer choices &mdash; accurate, vague, incorrect, and an explicit unanswerable option &mdash; so
-      that safe abstention can be distinguished from confident hallucination.
-    </p>
-
-    <h3 style="margin-top:28px;">What sets SuperMemory-VQA apart</h3>
+    </figure>
     <div class="grid">
       <div class="col-4">
         <div class="card">
@@ -188,6 +142,53 @@
         </div>
       </div>
     </div>
+  </section>
+  
+
+  <section id="dataset" class="reveal">
+    <div class="section-heading">
+      <p class="eyebrow">Dataset</p>
+    </div>
+    <p class="has-text-justified">
+      SuperMemory-VQA contains <b>52.9 hours</b> of everyday activities recorded with AI glasses, including synchronized
+      RGB video, audio transcription, eye gaze, IMU, and SLAM trajectories. A human-verified annotation pipeline yields
+      <b>4,853</b> grounded question-answer pairs spanning object and location memory, intent recall, visual scene
+      recall, timeline reconstruction, conversational memory, and in-context retrieval.
+    </p>
+    <div class="stat-grid">
+      <div class="card stat-card">
+        <span class="stat-value" data-count="52.9" data-decimals="1">0</span>
+        <span class="stat-label">hours of egocentric data</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" data-count="10">0</span>
+        <span class="stat-label">participants</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" data-count="4853">0</span>
+        <span class="stat-label">question-answer pairs</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" data-count="6">0</span>
+        <span class="stat-label">memory task categories</span>
+      </div>
+    </div>
+    <p class="section-intro">
+      SuperMemory-VQA contains 52.9 hours of egocentric recordings of everyday activities, collected from ten
+      participants wearing Gen 1 Meta Aria glasses. The recordings are multimodal: egocentric RGB video
+      (1408&times;1408, 30fps), dual SLAM streams (640&times;480, 30fps), eye-tracking (320&times;240, 60fps), and
+      7-channel audio (48kHz). Participants recorded indoors and outdoors following generic scripts &mdash; cooking a
+      recipe, playing board games, doing chores, and having conversations. Each participant contributed 3&ndash;12 hours
+      across multiple sessions, with three participants recording across multiple days (up to two weeks).
+    </p>
+    <p>
+      Alongside the recordings, SuperMemory-VQA provides 4,853 question-answer pairs that reflect what a user would
+      actually want to remember for practical, personal, or social purposes. Each question is posed as a multiple-choice
+      item with ordered answer choices &mdash; accurate, vague, incorrect, and an explicit unanswerable option &mdash; so
+      that safe abstention can be distinguished from confident hallucination.
+    </p>
+
+    
 
     <h3 style="margin-top:28px;">The six memory task categories</h3>
     <div class="task-grid">
